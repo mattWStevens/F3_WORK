@@ -9,7 +9,8 @@ import os
 # table-ready layout for the desired host including each type of 
 # resource name, the oldest and newest timestamps for each resource
 # name, the description for each resource name, as well as the number
-# of timestamps in total per resource name.
+# of timestamps in total per resource name. The contents of the output
+# file are also sorted in order by resource name.
 
 # This function determines the hostname of the file.
 def parse_hostname(line):
