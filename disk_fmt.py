@@ -54,6 +54,7 @@ if file_type.lower() == "-i":
 				if disks.get(disk_name) == None:
 					key = disk_name
 					disks[key] = []
+					# data for disk
 					disk_info = re.split('\s{1,}', line.strip())[1:]
 
 					# add a newline character after number to be inserted
@@ -86,6 +87,7 @@ if file_type.lower() == "-i":
 			outfile = open(outname, "w+")
 
 			if first:
+				# apply headers
 				for i in range(len(headers)):
 					if i < len(headers) - 1:
 						outfile.write(headers[i] + "  ")
@@ -117,7 +119,7 @@ elif file_type.lower() == "-s":
 				headers = re.split('\s{1,}', line.strip())[2:]
 				continue
 
-			if start and not re.match('^\s{1,}$', line):	# make sure to skip blanks
+			if start and not re.match('^\s{1,}$', line):	# make sure to skip blank lines
 				if time_interval and re.match('^\d\d:', line):
 					time_interval = False
 					times.clear()
@@ -148,7 +150,8 @@ elif file_type.lower() == "-s":
 						disks[disk_name] = []
 						disks[disk_name].append(times[0])
 
-						# add a newline character to end of line
+						# add a newline character after number to be inserted
+						# into the list if it is the last number on the line
 						for i in range(len(info)):
 							if i < len(info) - 1:
 								disks[disk_name].append(info[i].strip())
